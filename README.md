@@ -16,9 +16,9 @@
 
 ## Links
 
-* Github Code: `<insert Github repository link here>`
-* Github Proposal: `<insert Proposal Pull Request here>`
-* Trello/Github Project Kanban: `<insert trello board here>`
+* Github Code: https://github.com/mjeanne07/Build-Week-Group-Lunch-Coordinator 
+* Github Proposal: https://github.com/mjeanne07/ios-build-sprint-project-proposal
+* Trello/Github Project Kanban: https://github.com/mjeanne07/Build-Week-Group-Lunch-Coordinator/projects/1
 * Test Flight Signup (Recommended): `<insert beta signup link here>`
 * YouTube demo video (Recommended): `<insert video url here>`
 
@@ -30,27 +30,67 @@
 
 1. What was your favorite feature to implement? Why?
 
-    `<Your answer here>`
+The feature to see a detail view of a restaurant before selecting it.  Before selecting a locatiion to eat, it seems natural to want to know more about the restaurant (address/cuisine) before making a decision.  The detail view also allowed more creativity to create custom views of the restaurant, i.e., with their logo. 
 
 2. What was your #1 obstacle or bug that you fixed? How did you fix it?
 
-    `<Your answer here>`
+The biggest obstacle for creating this app was solving the mystery of how the "user" variable was being updated when selecting a restaurant.  We tried multiple solutions, one was using a delegate to try to pass information, but ultimately used a segue and changed our user.swift file to be a 'class' insead of a 'struct'.  With the struct, we were making changes to a copy of the user and not our original array of users.
   
 3. Share a chunk of code (or file) you're proud of and explain why.
+        
+    The Following code is in our User Controller swift file, which is basically the brain of our app.  This follows the creation, update, and deletion of our users and is critical for our app to function.
 
-    `<Your answer here>`
+        func createUser(withUserName userName: String) {
+           let newUser = User(userName: userName)
+           
+           users.append(newUser)
+           self.signedInUser = newUser
+           saveToPersistentStore()
+       }
+       
+       func updateSelection(user: User, withRestaurantSelection restaurantSelection: String) {
+           guard let index = users.firstIndex(of: user) else { return }
+           
+           var scratch = user
+           scratch.restaurantSelection = restaurantSelection
+           users.remove(at: index)
+           users.insert(scratch, at: index)
+           saveToPersistentStore()
+       }
+       
+       func updateLunchTime(for theUser: User) {
+           guard let index = users.firstIndex(of: theUser) else {return}
+           users[index].lunchTime = !users[index].lunchTime
+           saveToPersistentStore()
+       }
+       
+       var earlyUsers: [User] {
+           return users.filter({ $0.lunchTime == false })
+       }
+       
+       var lateUsers: [User] {
+           return users.filter({ $0.lunchTime })
+       }
+       
+       func delete(user: User) {
+           guard let index = users.firstIndex(of: user) else { return }
+           
+           users.remove(at: index)
+           
+           saveToPersistentStore()
+       }
   
 4. What is your elevator pitch? (30 second description your Grandma or a 5-year old would understand)
 
-    `<Your answer here>`
+Hungry Homies is an app that allows users, such as cowokers in an office, to sign up and choose a location/ time to eat lunch.  The app allows user to choose between early and late lunch as well as their preffered lunch location.  The app also allows users to research their options, users can click on the detail view of all of the restaurants to learn more about what each restaurant offers, where its located, and how to contact the restaurant for further information.  Once the user selects a restaurant, they will receive a notification of where they are going and when to leave.    
   
 5. What is your #1 feature?
 
-    `<Your answer here>`
+The #1 feature would be restaurant selection, creating an easy way for users to decide on a location to eat. 
   
 6. What are you future goals?
 
-    `<Your answer here>`
+Future goals would be to incorporate more restaurant details related to daily discounts/ deals to let users to make better monetary decisions on where they eat lunch everyday.  
 
 ## Required Slides (Add your Keynote to your PR)
 

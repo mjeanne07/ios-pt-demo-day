@@ -19,7 +19,7 @@
 * Github Code: https://github.com/mjeanne07/Build-Week-Group-Lunch-Coordinator 
 * Github Proposal: https://github.com/mjeanne07/ios-build-sprint-project-proposal
 * Trello/Github Project Kanban: https://github.com/mjeanne07/Build-Week-Group-Lunch-Coordinator/projects/1
-* Test Flight Signup (Recommended): `<insert beta signup link here>`
+* Test Flight Signup (Recommended): https://testflight.apple.com/join/uHYmKSEz
 * YouTube demo video (Recommended): https://youtu.be/jo6rAykw0Lo 
 * Slides: https://docs.google.com/presentation/d/1Fy2EyEAtxhMvcBivtl7FKOc-NDLT0zNFXzB8JvOJMHA/edit#slide=id.g59aed71b69_1_238
 
